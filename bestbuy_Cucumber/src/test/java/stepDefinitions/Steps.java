@@ -3,6 +3,7 @@ package stepDefinitions;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -40,31 +41,30 @@ public void user_select_country_as_United_State() {
     Ip.SelectCountry();
 }
 
-@And("User select search Menu and Enter item as {string}")
-public void user_select_search_Menu_enter_item_as(String item) {
-   Ip.SearchiPhone(item);
+
+@And("User select search Menu and Enter item as {string} and click on search")
+public void user_select_search_Menu_and_Enter_item_as_and_click_on_search(String item) {
+	Ip.SearchiPhone(item);
 }
 
-
-@And("Click on search button")
-public void click_on_search_button() {
-	Ip.ClickonSearch();
+@And("select filter in condition for pre-owned")
+public void click_on_select_filter() {
+	Ip.SelectFilter();;
     
 }
 
-
-@Then("Click on Add to Cart")
-public void click_on() {
-    Ip.ClickonAddToCart();
+@And("Find an item with a description, model and price")
+public void find_an_item_with_a_description_model_and_price() {
+	Ip.SelectItem();
 }
 
-@Then("Verify that a popup appears with the text ")
-public void verify_that_a_popup_appears_with_the_text() {
-	String alertText = driver.switchTo().alert().getText();
-	String expalertText = "Added to cart";
-	Assert.assertEquals(alertText, expalertText);
-	System.out.println("Alert text verified");
+
+@Then("Click on Add to Cart and Verify that a popup")
+public void click_on_Add_to_Cart() throws InterruptedException {
+    Ip.ClickonAddToCartandVerify();
+    
 }
+
 
 @When("click on cart page")
 public void click_on_cart_page() {
@@ -74,13 +74,13 @@ public void click_on_cart_page() {
 
 @Then("User should be found on Cart page")
 public void user_should_be_found_on_Cart_page() {
-	driver.getPageSource().contains("Order Summary");
-		Assert.assertTrue(false);
+	Ip.CartPage();
+	
 }
 
-@Then("Verify that iPhone14 is not present in the cart items")
-public void verify_that_is_not_present_in_the_cart_items() {
-   
+@Then("Verify that {string} is not present in the cart items")
+public void verify_that_is_not_present_in_the_cart_items(String string) {
+	  Ip.VerifyOtheritem();
 }
 
 }
